@@ -1,0 +1,66 @@
+{%extends "index.html"%}
+{% block  content%}
+    {%include "nav.html"%}
+    
+    <section class="py-5">
+        <div class="container px-4 px-lg-5 mt-5">
+            <p>Basket</p>
+            <table>
+                <tr>
+                    <th>ISBN</th>
+                    <th>Name</th>
+                    <th>Autor</th>
+                    <th>Price</th>
+                    <th>Currency</th>
+                    <th>Number Of Books</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            {%if not basket.books_in_basket[0] :%}
+                    <td> no items in basket<td>
+            {%else%}
+                {% for row in basket.books_in_basket%}
+                <tr>
+                  <td >{{row.book.isbn}}</td>  
+                  <td>{{row.book.name}}</td>
+                  <td>{{row.book.autor}}</td>
+                  <td style = 'text-align: right;'>{{row.book.price/100|round(2)}}</td>
+                  <td >{{row.book.currency.name}}</td>
+                  <td>
+                      <form action='{{"/basket/{0}/{1}".format(row.book.isbn,row.number_of_books-1)}}' method='post'>
+                          <input type='submit' value = '-'>
+                      </form>
+                      {{row.number_of_books}}
+                      <form action='{{"/basket/{0}/{1}".format(row.book.isbn,row.number_of_books+1)}}' method='post'>
+                          <input type='submit' value = '+'>
+                      </form>
+                  </td>
+                </tr>  
+                  
+              {%endfor%}
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td>Total:</td>
+                    <td>{{total}}</td>
+                    <td> USD</td> 
+                    <td>  <button id='order' >Order</button></td>
+                </tr>
+            {%endif%}
+            
+               
+            <div style="background-color: seagreen; width:200px;  position: absolute;left: 50%;top: 50%;" id="status-modal">
+                <h3><b id='qwer'>Chose paiment:</b></h3>
+                <form action='/order/1' method='post'>
+                    <input type='submit' value = 'PayPal'>
+                </form>
+                <form action='/order/2' method='post'>
+                    <input type='submit' value = 'On delivary'>
+                </form>
+                </div>
+              </div>
+        </div>
+    </div>
+</section>
+
+{% endblock%}

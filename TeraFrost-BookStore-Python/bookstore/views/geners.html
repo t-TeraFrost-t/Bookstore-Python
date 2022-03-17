@@ -1,0 +1,56 @@
+{%extends "index.html"%}
+{% block  content%}
+    {%include "backoffice-nav.html"%}
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                {{ message }}
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    
+    <div class="container-xl">
+        <div class="table-responsive">
+            <div class="table-wrapper">
+                <div class="table-title">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <h2>Geners</h2>
+                        </div>
+                        
+                        
+                        <div class="col-sm-6">
+                            {% if pers[0] %}
+                            <a href="#addEmployeeModal" onclick="location.href='/add-gener';" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New</span></a>						
+                            {% endif%}
+                        </div>
+                    </div>
+                </div>
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th >Name</th>
+                            <th style = 'width:10%'>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for user in geners%}
+                        <tr>
+                            <td style="text-align:left">{{user.name}}</td>
+                            <td>
+                                {% if pers[2] %}
+                                 <a href="#editEmployeeModal" class="edit" onclick="location.href='/update-gener/{{user.id}}';" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                                {%endif%}
+                                {% if pers[2] %}
+                                 <a href="#deleteEmployeeModal" class="delete" onclick="location.href='/delete-gener/{{user.id}}';" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                                {%endif%}
+                            </td>
+                        </tr>
+                        {%endfor%}
+                    </tbody>
+                </table>
+            </div>
+        </div>        
+    </div> 
+    
+{%endblock%}  
