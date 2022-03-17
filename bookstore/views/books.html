@@ -1,0 +1,41 @@
+{%extends "index.html"%}
+{% block  content%}
+    {%include "nav.html"%}
+    
+    <section class="py-5">
+        <div class="container px-4 px-lg-5 mt-5">
+            
+            <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">    
+                {%for book in data%}
+                <div class="col mb-5">
+                    <div class="card h-100">
+                        <!-- Product image-->
+                        <img class="card-img-top" src="{{book.cover}}" alt="..." />
+                        <!-- Product details-->
+                        <div class="card-body p-4">
+                            <div class="text-center">
+                                <!-- Product name-->
+                                <h5 class="fw-bolder"><a href = '/book/{{book.isbn}}'>{{book.name}}</a></h5>
+                                <h6 class="fw-bolder">{{book.autor}}</h6>
+                                <!-- Product price-->
+                                {{book.price/100 }}{{book.id_currency}}
+                            </div>
+                        </div>
+                        <!-- Product actions-->
+                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                            <form class="text-center" action='{{"/basket/{0}".format(book.id)}}' method='post'>
+                                <input type='submit' class="btn btn-outline-dark mt-auto" value = 'Add to Cart'>
+                            </form>
+                            <p></p>
+                            <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="/book/{{book.isbn}}">View Book</a></div>
+                        </div>
+                    </div>
+                </div>
+        
+            {% endfor%}   
+                
+            </div>
+        </div>
+    </section>
+    
+{% endblock%}
