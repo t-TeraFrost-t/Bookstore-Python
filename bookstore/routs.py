@@ -760,9 +760,9 @@ def report():
             data = reportFun(form)
             total = data[1]
             data = data[0]
-            messageForLog = 'staff: ' + session['Staff'].username + 'made a report with parameter:\n'
+            #messageForLog = 'staff: ' + session['Staff'].username + 'made a report with parameter:\n'
 
-            logged(user = session['Staff'].id, message = messageForLog)
+            #logged(user = session['Staff'].id, message = messageForLog)
             if form.tocsv.data:
                 par = []
                 cols = []
