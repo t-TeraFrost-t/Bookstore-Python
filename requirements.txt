@@ -39,7 +39,6 @@ keyring==18.0.1
 launchpadlib==1.10.13
 lazr.restfulclient==0.14.2
 lazr.uri==1.0.3
-lightdm-gtk-greeter-settings==1.2.2
 lml==0.1.0
 MarkupSafe==2.1.0
 menulibre==2.2.1
