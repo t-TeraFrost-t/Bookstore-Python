@@ -1,1 +1,1 @@
-web: gunicorn -c gun.py run:app
+web: gunicorn run:app
