@@ -82,8 +82,6 @@ SQLAlchemy==1.4.32
 ssh-import-id==5.10
 systemd-python==234
 texttable==1.6.4
-ubuntu-advantage-tools==20.3
-ubuntu-drivers-common==0.0.0
 ufw==0.36
 unattended-upgrades==0.1
 urllib3==1.25.8
