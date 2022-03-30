@@ -2,7 +2,7 @@ from flask import render_template, url_for,jsonify,session,redirect,flash
 import uuid
 from datetime import datetime
 from bookstore import app, excel
-from bookstore import db, bcrypt, engine
+from bookstore import db, bcrypt
 from bookstore import mail
 from bookstore.models import Book,Currency,Gener,User,Basket,BooksInBasket,Order,BooksInOrder,StatusOfOrder,Payment,Staff,TypeOfPayment
 from bookstore.forms import RegistrationForm,LoginForm,SearchForm,GenerForm,BookForm,StaffForm,ReportForm,RoleUpdate
