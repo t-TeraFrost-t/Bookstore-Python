@@ -26,7 +26,9 @@ paypalrestsdk.configure({
 @app.errorhandler(400)
 def handle_custom_exception(error):
     return render_template('error.html'), 400
-
+@app.route("/test", methods=['GET', 'POST'])
+def test():
+  return "<h>Test</h>"
 @app.route("/books", methods=['GET', 'POST'])
 def books():
     #try:
