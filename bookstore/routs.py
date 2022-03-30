@@ -436,12 +436,12 @@ def update_books(isbn):
         form.currency.default = book.currency.id
         form.description.default = book.description
         if form.validate_on_submit():
-           if not has_permition('update_books'):
-                logger(user=session['Staff'].id,message= 'staff: '+session['Staff'].username+' tried to updated a book but has no permition')
-                flash(f'no permition')
-                return redirect('/backoffice-books') 
-           if form.description.data:
-                book.description = save_picture(form.description.data)
+            if not has_permition('update_books'):
+                 logger(user=session['Staff'].id,message= 'staff: '+session['Staff'].username+' tried to updated a book but has no permition')
+                 flash(f'no permition')
+                 return redirect('/backoffice-books') 
+            if form.description.data:
+                 book.description = save_picture(form.description.data)
             book.autor=form.autor.data
             book.price=form.price.data*100
             book.discount=form.discount.data*100
