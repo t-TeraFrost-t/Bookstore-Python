@@ -15,7 +15,6 @@ import secrets
 import os
 import paypalrestsdk
 from datetime import datetime
-from PIL import Image
 from time import sleep
 from werkzeug.exceptions import abort
 paypalrestsdk.configure({
