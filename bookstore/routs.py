@@ -404,7 +404,7 @@ def add_books():
                         logger(user=session['Staff'].id,message= 'staff: '+session['Staff'].username+' tried to add a book but has no permition')
                         flash(f'no permition')
                         return redirect('/backoffice-books')
-               book = Book(isbn = form.isbn.data,
+                book = Book(isbn = form.isbn.data,
                             id = 1010101010,
                             name=form.name.data,
                             autor=form.autor.data,
