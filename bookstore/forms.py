@@ -67,8 +67,15 @@ class ReportForm(FlaskForm):
     paymentTypeShow = SelectField('Payment Type' , choices=[('False', 'Hide'),('True', 'Show')],validators=[Optional()])
     period = SelectField('Period' , choices=[('none', 'None'),('MM-DD', 'Day'),('IW','Weak'),('MM','Month'),(' ','Year')],validators=[Optional()])
     tocsv = SubmitField('Export')
+    exportType = SelectField('Status' , choices=[('csv', 'CSV'),('xlsx', 'XLSX'),],validators=[Optional()])
     submit = SubmitField('Generate')
     
 class RoleUpdate(FlaskForm):
     name = StringField('Email/Username',validators=[DataRequired()])
     submit = SubmitField('Add')
+
+class AuditForm(FlaskForm):
+    toDate =  DateField('To Date', description = 'To Date',validators=[Optional()])
+    fromDate =  DateField('From Date', description = 'From Date',validators=[Optional()])
+    name = StringField('Username',validators=[Optional()])
+    submit = SubmitField('Generate')

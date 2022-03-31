@@ -102,13 +102,16 @@
                                     {% endfor %}
                                 </div>
                             {% else %}
-                                {{ formR.name(class="form-control form-control-lg") }}
+                                {{ formR.name(class="form-control form-control-lg",id='roles',list = 'suggestions-roles') }}
                             {% endif %}
                         </div>
                     </fieldset>
                     <div class="form-group">
                         {{ formR.submit(class="btn btn-outline-info") }}
                     </div>
+                    <datalist id = 'suggestions-roles'>
+
+                    </datalist>
                 </form>
                 </div>
             </div>

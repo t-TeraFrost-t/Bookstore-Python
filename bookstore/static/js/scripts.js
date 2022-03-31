@@ -10,6 +10,17 @@ $(document).ready(()=>{
         $('#status-modal').show();  
     })
     
+    $('#roles').keyup(()=>{
+        $('#roles').attr(('list','suggestions-users'))
+        $.get(`/sugestions/roles/${$('#roles').val()}`,(data)=>{
+            console.log(data);
+            $('#suggestions-roles').empty();
+            data.forEach(element => {
+                console.log(element);
+                $('#suggestions-roles').append(`<option>${element}</option>`)
+            });
+        })
+    });
     $('#user').keyup(()=>{
         $('#user').attr(('list','suggestions-users'))
         $.get(`/sugestions/users/${$('#user').val()}`,(data)=>{

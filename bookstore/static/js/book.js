@@ -32,4 +32,22 @@ $(document).ready(()=>{
             }
         });
     })
+    $('.butt-audit').click(()=>{
+        console.log('rib');
+        $.ajax({
+            url: '/audit',
+            type: 'GET',
+            data: { 
+                name: $('#name').val(),
+                toDate: $('#toDate').val(),
+                fromDate: $('#fromDate').val(),
+                page: $(event.currentTarget).val()
+            },
+            success: (data)=>{
+                let newDoc = document.open("text/html", "replace");
+                newDoc.write(data);
+                newDoc.close();
+            }
+        });
+    })
 });

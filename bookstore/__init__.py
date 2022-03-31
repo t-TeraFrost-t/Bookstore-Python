@@ -7,13 +7,17 @@ from datetime import timedelta
 from flask_mail import Mail
 from flask_bcrypt import Bcrypt
 import flask_excel as excel
+from psycogreen.gevent import patch_psycopg
 
+patch_psycopg()  # the only change
 
 
 app = Flask(__name__, template_folder='views')
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://hlanyiegpohmkh:8f5051602023d1893cfa28dcb25ec5f8875682740a6b68a458fff5a950c70e21@ec2-99-80-170-190.eu-west-1.compute.amazonaws.com:5432/divqiaop85jk0'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://mincho:PALEsedem@localhost/testbookstore'
 app.config['SECRET_KEY'] = '7d32da10cecc362833c07714408b63bc'
 db = SQLAlchemy(app)
+engine = create_async_engine('postgresql+asyncpg://mincho:PALEsedem@localhost/testbookstore')
+async_session = sessionmaker( engine, expire_on_commit=True, class_=AsyncSession)
 app.permanent_session_lifetime = timedelta(hours=1)
 app.config['MAIL_SERVER']='smtp.googlemail.com'
 app.config['MAIL_PORT'] = 465

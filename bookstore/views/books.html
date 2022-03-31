@@ -1,8 +1,29 @@
 {%extends "index.html"%}
 {% block  content%}
     {%include "nav.html"%}
-    
     <section class="py-5">
+        <div class="clearfix" style = 'float: none; position: absolute; left: 50%; transform: translate(-50%, -50%);'>
+                    
+            <ul class="pagination">
+                <button class="butt-order page-link"  onclick="location.href='/books/1'"  value="1"><|</button>
+                {% if page != 1 %}
+                <button class="butt-order page-link" onclick="location.href='/books/{{page-1}}'"><</button>
+                {%endif%}
+                {% for p in range( page - 5 if page - 5 > 1 else 1 , page + 6 if page + 6 <= maxpage else maxpage+1) %}
+                   {% if p == page %}
+                    <button class="butt-order page-link" style="background-color: red;" onclick="location.href='/books/{{p}}'" >{{p}}</button>
+                   {% else   %}
+                        <button class="butt-order page-link"   onclick="location.href='/books/{{p}}'">{{p}}</button>
+                    {%endif%}
+                     
+                {%endfor%}
+                {% if page != maxpage %}
+                 <button class="butt-order page-link" onclick="location.href='/books/{{page+1}}'">></button>
+                {%endif%}
+                 <button class="butt-order page-link" onclick="location.href='/books/{{maxpage}}'">|></button>
+            </ul>
+           
+        </div>
         <div class="container px-4 px-lg-5 mt-5">
             
             <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">    

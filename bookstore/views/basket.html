@@ -16,7 +16,7 @@
                     <th></th>
                     <th></th>
                 </tr>
-            {%if not basket.books_in_basket[0] :%}
+            {%if not basket  or not basket.books_in_basket[0] :%}
                     <td> no items in basket<td>
             {%else%}
                 {% for row in basket.books_in_basket%}
@@ -27,11 +27,11 @@
                   <td style = 'text-align: right;'>{{row.book.price/100|round(2)}}</td>
                   <td >{{row.book.currency.name}}</td>
                   <td>
-                      <form action='{{"/basket/{0}/{1}".format(row.book.isbn,row.number_of_books-1)}}' method='post'>
+                      <form action='{{"/basket/{0}/{1}".format(row.book.id,row.number_of_books-1)}}' method='post'>
                           <input type='submit' value = '-'>
                       </form>
                       {{row.number_of_books}}
-                      <form action='{{"/basket/{0}/{1}".format(row.book.isbn,row.number_of_books+1)}}' method='post'>
+                      <form action='{{"/basket/{0}/{1}".format(row.book.id,row.number_of_books+1)}}' method='post'>
                           <input type='submit' value = '+'>
                       </form>
                   </td>

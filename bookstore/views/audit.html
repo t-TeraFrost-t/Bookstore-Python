@@ -1,0 +1,77 @@
+{%extends "index.html"%}
+{% block  content%}
+    {%include "backoffice-nav.html"%}
+     
+    <div class="container-xl">
+        <div class="table-responsive">
+            <div class="table-wrapper">
+                <div class="table-title">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <h2>Audit</h2>
+                        </div>
+                        <div class="col-sm-6">
+                            					
+                        </div>
+                    </div>
+                </div>
+            
+                <div id = 'filer'>
+                    <div>
+                     <label  for='fromDate'>From date:</label>
+                     <input class="input-t" value='{{values["fromDate"]}}' type='date' id='fromDate'>
+                     
+                     <label  for='toDate'>To date:</label>
+                     <input class="input-t" value='{{values["toDate"]}}' type='date' id='toDate'>
+                     
+                    </div>
+                        <label  for='name'>Name:</label>
+                        <input class="input-t" value='{{values["name"]}}' type='text' id='name'>
+                   
+                     <div>
+                       
+                     </div>
+                     <button class="page-link butt-audit" value="1">Fillter</button>
+                    
+                </div>
+                <div class="clearfix ">
+                    
+                    <ul class="pagination">
+                        <button class="page-link butt-audit" value="1"><|</button>
+                        {% if page != 1 %}
+                        <button class="page-link butt-audit" value='{{page-1}}'><</button>
+                        {%endif%}
+                        {% for p in range( page - 5 if page - 5 > 1 else 1 , page + 6 if page + 6 <= maxpage else maxpage+1) %}
+                           {% if p == page %}
+                            <button class="page-link butt-audit" style="background-color: red;" value='{{p}}' >{{p}}</button>
+                           {% else   %}
+                                <button class="page-link butt-audit"   value='{{p}}'>{{p}}</button>
+                            {%endif%}
+                             
+                        {%endfor%}
+                        {% if page != maxpage %}
+                         <button class="page-link butt-audit" value='{{page+1}}'>></button>
+                        {%endif%}
+                         <button class="page-link butt-audit" value='{{maxpage}}'>|></button>
+                    </ul>
+                   
+                </div>
+    {%if data %}
+        <table class="table table-striped table-hover">
+            <tr>
+                <th style = "width:7%;text-align: left;">Time</th>
+                <th style = "width:7%;text-align: left;">User</th>
+                <th>Action</th>
+            </tr>
+            {% for row in data%}
+                <tr>
+                    <td>{{row.time}}</td>
+                    <td style="text-align: left;">{{row.user}}</td>
+                    <td>{{row.action}}</td>
+                </tr>
+            {% endfor%}
+        </table>
+    {%else%}
+     <p>no data for this paramethers</p>
+        {% endif%}
+{%endblock%}  

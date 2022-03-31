@@ -4,6 +4,7 @@
     <div class="container px-4 px-lg-5 mt-5">
         <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
             <div class="content-section">
+               
                 <form method="POST" action="">
                     {{ form.hidden_tag() }}
                     <fieldset class="form-group">
@@ -66,6 +67,16 @@
                         {{ form.submit(class="btn btn-outline-info") }}
                     </div>
                 </form>
+                <div class="container">
+                    {% for message in get_flashed_messages() %}
+                    <div class="alert alert-warning">
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        {{ message }}
+                    </div>
+                    {% endfor %}
+                
+                    {% block page_content %}{% endblock %}
+                </div>
             </div>
             <div class="border-top pt-3">
                 <small class="text-muted">
