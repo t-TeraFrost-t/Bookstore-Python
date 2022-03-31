@@ -15,7 +15,6 @@ import secrets
 import os
 import paypalrestsdk
 from datetime import datetime
-from PIL import Image
 from time import sleep
 import math
 from werkzeug.exceptions import abort
@@ -428,7 +427,6 @@ def add_books():
                 logger(user=session['Staff'].id,message= 'staff: '+session['Staff'].username+' tried to add a book but has no permition')
                 flash(f'no permition')
                 return redirect('/backoffice-books')
-        cover_file = save_picture(form.cover.data)
         book = Book(isbn = form.isbn.data,
                     id = 1010101010,
                     name=form.name.data,
@@ -437,7 +435,7 @@ def add_books():
                     discount=form.discount.data*100,
                     description = form.description.data,
                     amount = form.amount.data,
-                    cover = cover_file, 
+                    cover = 'error', 
                     id_gener = form.gener.data,
                     id_currency = form.currency.data)
         db.session.add(book)
@@ -464,8 +462,6 @@ def update_books(isbn):
                 logger(user=session['Staff'].id,message= 'staff: '+session['Staff'].username+' tried to updated a book but has no permition')
                 flash(f'no permition')
                 return redirect('/backoffice-books') 
-        if form.cover.data:
-            book.cover = save_picture(form.cover.data)
         if form.description.data:
             book.description = form.description.data
         book.autor=form.autor.data
